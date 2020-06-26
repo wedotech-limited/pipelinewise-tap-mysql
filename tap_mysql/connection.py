@@ -87,7 +87,7 @@ class MySQLConnection(pymysql.connections.Connection):
             "port": int(config["port"]),
             "cursorclass": config.get("cursorclass") or pymysql.cursors.SSCursor,
             "connect_timeout": CONNECT_TIMEOUT_SECONDS,
-            "charset": "utf8",
+            "charset": config.get("charset") or "utf8",
         }
 
         ssl_arg = None
