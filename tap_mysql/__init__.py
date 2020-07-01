@@ -57,6 +57,8 @@ DATETIME_TYPES = {'datetime', 'timestamp', 'date', 'time'}
 
 BINARY_TYPES = {'binary', 'varbinary'}
 
+CUSTOM_BINARY_TYPES = {'blob', 'tinyblob', 'mediumblob', 'longblob', 'geometry', 'point'}
+
 
 def schema_for_column(column):
     """Returns the Schema object for the given Column."""
@@ -103,6 +105,10 @@ def schema_for_column(column):
         result.format = 'date-time'
 
     elif data_type in BINARY_TYPES:
+        result.type = ['null', 'string']
+        result.format = 'binary'
+
+    elif data_type in CUSTOM_BINARY_TYPES:
         result.type = ['null', 'string']
         result.format = 'binary'
 
